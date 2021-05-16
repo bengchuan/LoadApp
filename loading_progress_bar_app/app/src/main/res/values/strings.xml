@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">LoadApp By Chuan Lim</string>
+    <string name="app_description">Download files from Internet</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="notification_title">Udacity: Android Kotlin Nanodegree </string>
+    <string name="notification_description">File is downloaded: </string>
+    <string name="notification_button">See details</string>
+
+    <string name="please_select_file_to_download">Please select the file to download</string>
+
+    <string name="button_name">Click me</string>
+    <string name="button_download">Download</string>
+    <string name="button_loading">We are loading </string>
+    <string name="title_activity_detail">DetailActivity</string>
+
+    <!-- apps -->
+    <string name="url_glide">https://github.com/bumptech/glide</string>
+    <string name="url_starter">https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter</string>
+    <string name="url_retrofit">https://github.com/square/retrofit</string>
+
+    <string name="desc_glide">https://github.com/bumptech/glide - Image loading library by BumpTech.</string>
+    <string name="desc_starter">https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter - Current repository by Udacity.</string>
+    <string name="desc_retrofit">https://github.com/square/retrofit - Type-safe HTTP client for Android and Java by Square, Inc.</string>
+    <string name="url_will_return_error">https://google.com/this_does_not_exist - Introduce 404 error</string>
+
+    <!-- Channel id -->
+    <string name="download_complete_channel_id">0</string>
+    <string name="download_complete_channel_name">Download Status</string>
+    <string name="download_complete_channel_desc">Showing Download Complete Status Channel</string>
+    <string name="format_app_string">%s - %s</string>
+
+    <!-- Download Status -->
+    <string name="status_successful">SUCCESS</string>
+    <string name="status_failed">FAILED</string>
+    <string name="status_unknown">UNKNOWN</string>
+    <string name="label_filename">Filename</string>
+    <string name="ok">OK</string>
+    <string name="status">Status</string>
+
+    <string name="successful_message">Download is successful</string>
+    <string name="fail_message">Download has failed</string>
+
+</resources>
