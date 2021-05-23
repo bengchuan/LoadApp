@@ -7,70 +7,89 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
+    android:layout_margin="@dimen/padding_small"
     tools:showIn="@layout/activity_main">
 
 
     <!-- URL download options -->
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:paddingTop="@dimen/padding_medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_download"
-        tools:srcCompat="@drawable/ic_download" />
-
-    <RadioGroup
-        android:id="@+id/downloadUrlOptions"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/padding_large"
-        android:paddingEnd="@dimen/padding_large"
+        android:layout_marginTop="@dimen/padding_medium"
         app:layout_constraintBottom_toTopOf="@id/custom_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <RadioButton
-            android:id="@+id/glide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_medium"
-            android:text="@string/desc_glide" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <RadioButton
-            android:id="@+id/starter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_medium"
-            android:text="@string/desc_starter" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:paddingTop="@dimen/padding_medium"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toTopOf="@+id/downloadUrlOptions"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_download"
+                tools:srcCompat="@drawable/ic_download" />
 
-        <RadioButton
-            android:id="@+id/retrofit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_medium"
-            android:text="@string/desc_retrofit" />
+            <RadioGroup
+                android:id="@+id/downloadUrlOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/padding_large"
+                android:paddingEnd="@dimen/padding_large"
+                app:layout_constraintBottom_toTopOf="@id/custom_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView">
 
-        <RadioButton
-            android:id="@+id/error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_medium"
-            android:text="@string/url_will_return_error" />
-    </RadioGroup>
+                <RadioButton
+                    android:id="@+id/glide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_medium"
+                    android:text="@string/desc_glide" />
+
+                <RadioButton
+                    android:id="@+id/starter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_medium"
+                    android:text="@string/desc_starter" />
+
+                <RadioButton
+                    android:id="@+id/retrofit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_medium"
+                    android:text="@string/desc_retrofit" />
+
+                <RadioButton
+                    android:id="@+id/error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_medium"
+                    android:text="@string/url_will_return_error" />
+            </RadioGroup>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
 
     <com.udacity.LoadingButton
         android:id="@+id/custom_button"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/padding_large"
-        android:layout_marginTop="@dimen/padding_large"
+        android:layout_marginBottom="@dimen/padding_large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/downloadUrlOptions" />
+        app:layout_constraintTop_toBottomOf="@id/scrollView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

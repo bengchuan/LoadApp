@@ -9,6 +9,7 @@ import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.Log
 import android.widget.ProgressBar
+import androidx.core.content.withStyledAttributes
 import kotlin.math.min
 import kotlin.properties.Delegates
 
@@ -37,30 +38,15 @@ class LoadingButton @JvmOverloads constructor(
     }
 
     // Colours
-    private val buttonBgColor = context.getColor(R.color.colorPrimary)
-    private val buttonProgressColor = context.getColor(R.color.colorPrimaryDark)
-    private val circleColor = context.getColor(R.color.colorAccent)
+    private var buttonBgColor = 0
+    private var buttonProgressColor = 0
+    private var circleColor = 0
+    private var loadingTextColor = 0
 
-    private val textPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
-        style = Paint.Style.FILL
-        textAlign = Paint.Align.CENTER
-        typeface = Typeface.DEFAULT
-        color = context.getColor(R.color.white)
-        textSize = 55f
-    }
-
-    private val buttonBackgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        style = Paint.Style.FILL
-        color = buttonBgColor
-    }
-
-    private val buttonLoadingPaint = Paint(buttonBackgroundPaint).apply {
-        color = buttonProgressColor
-    }
-
-    private val circlePaint = Paint(buttonBackgroundPaint).apply {
-        color = circleColor
-    }
+    private val textPaint = TextPaint(Paint.ANTI_ALIAS_FLAG)
+    private val buttonBackgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val buttonLoadingPaint = Paint(buttonBackgroundPaint)
+    private val circlePaint = Paint(buttonBackgroundPaint)
 
     // Button Rect which we set the size in onMeasured()
     private val rectButtonBackground = Rect(0, 0, widthSize, heightSize)
@@ -78,6 +64,30 @@ class LoadingButton @JvmOverloads constructor(
             textLoading = getString(R.string.button_loading)
             textDownload = getString(R.string.button_download)
         }
+
+        context.withStyledAttributes(attrs, R.styleable.LoadingButton) {
+            buttonBgColor = getColor(R.styleable.LoadingButton_defaultBackgroundColor, 0)
+            buttonProgressColor = getColor(R.styleable.LoadingButton_loadingBackgroundColor, 0)
+            circleColor = getColor(R.styleable.LoadingButton_circleColor, 0)
+            loadingTextColor = getColor(R.styleable.LoadingButton_loadingTextColor, 0)
+        }
+
+        // TextPaint init
+        textPaint.apply {
+            style = Paint.Style.FILL
+            textAlign = Paint.Align.CENTER
+            typeface = Typeface.DEFAULT
+            color = loadingTextColor
+            textSize = 55f
+        }
+
+        buttonBackgroundPaint.apply {
+            style = Paint.Style.FILL
+            color = buttonBgColor
+        }
+
+        buttonLoadingPaint.color = buttonProgressColor
+        circlePaint.color = circleColor
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -119,8 +129,8 @@ class LoadingButton @JvmOverloads constructor(
         // We just need bottom to get height of the progress bar
         rectProgressBar.bottom = heightSize
 
-        // circle set to 20% of whichever it is minimum
-        progressCircleRadius = (min(w, h) * 0.2f)
+        // circle set to 15% of whichever it is minimum
+        progressCircleRadius = (min(w, h) * 0.15f)
     }
 
     override fun performClick(): Boolean {
@@ -144,7 +154,7 @@ class LoadingButton @JvmOverloads constructor(
     private fun calculateProgressCircle() {
         // circle offset by the button text
         // we are making assumption that textLoading is longer than textDownload
-        val circleX = rectButtonBackground.exactCenterX() + textPaint.measureText(textLoading)
+        val circleX = rectButtonBackground.exactCenterX() + textPaint.measureText(textLoading) / 1.5f
         val circleY = rectButtonBackground.exactCenterY()
         rectProgressCircle.set(
             circleX - progressCircleRadius,
